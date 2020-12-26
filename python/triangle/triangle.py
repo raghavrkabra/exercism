@@ -1,31 +1,30 @@
 def equilateral(sides: list) -> bool:
-    triangle = sorted(sides)
+    """Return True if given sides form a equilateral traiangle."""
+    if _is_triangle(sides):
+        return len(set(sides)) == 1
 
-    if triangle[0] == 0:
-        return False
-
-    return len(set(sides)) == 1
+    return False
 
 
 def isosceles(sides: list) -> bool:
-    triangle = sorted(sides)
-
-    if triangle[0] == 0:
-        return False
-
-    if triangle[0] == triangle[1] or triangle[1] == triangle[2]:
-        return triangle[0] + triangle[1] >= triangle[2]
+    """Return True if given sides form a isosceles traiangle."""
+    if _is_triangle(sides):
+        return len(set(sides)) <= 2
 
     return False
 
 
 def scalene(sides: list) -> bool:
-    triangle = sorted(sides)
-
-    if triangle[0] == 0:
-        return False
-
-    if len(set(triangle)) == 3:
-        return triangle[0] + triangle[1] >= triangle[2]
+    """Return True if given sides form a scalene traiangle."""
+    if _is_triangle(sides):
+        return len(set(sides)) == 3
 
     return False
+
+
+def _is_triangle(sides:list) -> bool:
+    """Return True if given sides form a traiangle."""
+    if 0 in sides:
+        return False
+
+    return sum(sides) >= 2*max(sides)
