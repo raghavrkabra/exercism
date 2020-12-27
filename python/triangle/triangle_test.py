@@ -50,6 +50,12 @@ class IsoscelesTriangleTest(unittest.TestCase):
     def test_sides_may_be_floats(self):
         self.assertIs(isosceles([0.5, 0.4, 0.5]), True)
 
+    def test_triangle_is_not_degenerate(self):
+        self.assertIs(isosceles([5, 5, 9], True), False)
+
+    def test_triangle_is_degenerate(self):
+        self.assertIs(isosceles([4, 4, 8], True), True)
+
 
 class ScaleneTriangleTest(unittest.TestCase):
     def test_no_sides_are_equal(self):
@@ -66,6 +72,12 @@ class ScaleneTriangleTest(unittest.TestCase):
 
     def test_sides_may_be_floats(self):
         self.assertIs(scalene([0.5, 0.4, 0.6]), True)
+
+    def test_triangle_is_not_degenerate(self):
+        self.assertIs(scalene([5, 4, 6], True), False)
+
+    def test_triangle_is_degenerate(self):
+        self.assertIs(scalene([5, 4, 9], True), True)
 
 
 if __name__ == "__main__":
