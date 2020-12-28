@@ -6,7 +6,7 @@ def saddle_points(matrix):
     points = []
     indices = [(i,j)
             for i in range(len(matrix))
-            for j in range(len(matrix[j]))
+            for j in range(len(matrix[i]))
             ]
 
     for i, j in indices:
