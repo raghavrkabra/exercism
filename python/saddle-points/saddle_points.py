@@ -1,17 +1,17 @@
 def saddle_points(matrix):
     """Returns the indices of saddle points in given matrix."""
-    if matrix != [] and any(len(row) != len(matrix[0]) for row in matrix):
+    if matrix == []:
+        return []
+
+    if any(len(row) != len(matrix[0]) for row in matrix):
         raise ValueError("Irregular matrix")
 
     points = []
-    indices = [(i,j)
-            for i in range(len(matrix))
-            for j in range(len(matrix[i]))
-            ]
 
-    for i, j in indices:
-        if _is_saddle_point(matrix[i][j], matrix[i], _column(matrix, j)):
-            points.append({"row": i+1, "column": j+1})
+    for i, row in enumerate(matrix):
+        for j, d in enumerate(row):
+            if _is_saddle_point(d, row, _column(matrix, j)):
+                points.append({"row": i+1, "column": j+1})
 
     return points
 
