@@ -17,11 +17,5 @@ def handle_error_by_returning_tuple(input_data):
 
 
 def filelike_objects_are_closed_on_exception(filelike_object):
-    try:
-        filelike_object.open()
-        filelike_object.do_something()
-        filelike_object.close()
-    except:
-        filelike_object.close()
-        raise
-    pass
+    with filelike_object as f:
+        f.do_something()
