@@ -6,14 +6,11 @@ def steps(number: int) -> int:
     _n = number
     count = 0
 
-    while True:
+    while _n != 1:
+        count += 1
         if _n % 2 == 0:
             _n /= 2
-            count += 1
         elif _n != 1:
             _n = _n*3 + 1
-            count += 1
-        elif _n == 1:
-            break
 
     return count
