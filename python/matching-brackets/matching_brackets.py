@@ -1,5 +1,9 @@
-def is_paired(input_string):
-    brackests = {"(":")", "[":"]", "{":"}"}
+"""Solution to matching bracket exercise in python track"""
+
+
+def is_paired(input_string: str) -> bool:
+    """Validate if brackets are matching in given string"""
+    brackests = {"(": ")", "[": "]", "{": "}"}
     stack = []
 
     for char in input_string:
