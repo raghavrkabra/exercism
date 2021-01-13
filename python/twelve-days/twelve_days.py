@@ -1,11 +1,11 @@
-twelve_days = {
-        "days":[
+TWELVE_DAYS = {
+        "days": [
             "first", "second", "third", "fourth", "fifth", "sixth",
             "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"
             ],
 
-        "gift_list":[
-                "a Partridge in a Pear Tree.",
+        "gift_list": [
+                "a Partridge in a Pear Tree",
                 "two Turtle Doves",
                 "three French Hens",
                 "four Calling Birds",
@@ -22,37 +22,21 @@ twelve_days = {
 
 
 def recite(start_verse: int, end_verse: int) -> list:
-    """Recite some or all of the verses of the poem"""
-    verses = []
-
-    for i in range(start_verse-1, end_verse):
-        verse = get_verse(i+1) # 'i' is one less then the verse we want
-        verses.append(verse)
-
-    return verses
+    """Recite some or all of the verses of the poem."""
+    return [get_verse(i) for i in range(start_verse, end_verse + 1)]
 
 
 def get_verse(verse_number: int) -> str:
-    """Return the verse at verse_number"""
-
+    """Return the verse at verse_number."""
     # verse_number is one more then the indic of day in the list
-    day = twelve_days["days"][verse_number-1]
+    day = TWELVE_DAYS["days"][verse_number-1]
 
-    verse = ("On the {0} day of Christmas my true love"
-            " gave to me: {1}".format(
-                day,
-                get_gifts(verse_number, twelve_days["gift_list"])
-                )
-            )
-    return verse
-
-
-def get_gifts(verse_number: int, gift_list: list) -> str:
-    """Return the gift of the verse"""
+    # gift list at the end of the verse
+    gift_list = TWELVE_DAYS["gift_list"]
     if verse_number == 1:
-        return gift_list[0]
+        gifts = gift_list[0] + "."
     else:
-        # gifts here contains all the gifts except the first one
-        # as we need to add an "and" before it in the poem
-        gifts = ", ".join(reversed(gift_list[1:verse_number]))
-        return gifts + ", and " + gift_list[0]
+        gifts = (", ".join(reversed(gift_list[1:verse_number])) +
+                 ", and " + gift_list[0] + ".")
+
+    return f"On the {day} day of Christmas my true love gave to me: {gifts}"
