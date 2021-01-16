@@ -1,17 +1,8 @@
 raindrops <- function(number) {
-  result = ""
+  f <- c(3, 5, 7)
+  words <- c('Pling', 'Plang', 'Plong')
 
-  if (number %% 3 == 0) {
-    result <- paste0(result, "Pling");
-  }
-
-  if (number %% 5 == 0) {
-    result <- paste0(result, "Plang");
-  }
-
-  if (number %% 7 == 0) {
-    result <- paste0(result, "Plong");
-  }
+  result <- paste0(words[which(number %% f == 0)], collapse = "")
 
   if (result == "") {
     result = toString(number)
