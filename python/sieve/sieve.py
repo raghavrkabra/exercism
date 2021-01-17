@@ -1,15 +1,16 @@
 """Solution to Sieve exercise."""
 
+from math import ceil, sqrt
 from typing import List
 
 
 def primes(limit: int) -> List[int]:
     """Return all the prime numbers smaller then or equal to limit."""
-    sieve = dict.fromkeys(range(2, limit+1), True)
+    sieve = [*[False]*2, *[True for _ in range(2, limit+1)]]
 
-    for key in iter(sieve):
-        if sieve[key] is True:
-            for i in range(pow(key, 2), limit+1, key):
-                sieve[i] = False
+    for i in range(ceil(sqrt(len(sieve)))):
+        if sieve[i]:
+            for j in range(pow(i, 2), limit+1, i):
+                sieve[j] = False
 
-    return [key for key in sieve if sieve[key] is True]
+    return [i for i in range(len(sieve)) if sieve[i]]
