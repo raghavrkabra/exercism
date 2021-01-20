@@ -1,7 +1,11 @@
+"""Solution to Word Count exercise in python track."""
+
 import re
 
+
 def count_words(sentence):
-    pattern = re.compile("[a-z]+'[a-z]+|[a-z0-9]+")
+    """Count the number of words in given sentence."""
+    pattern = re.compile("[a-z]+'[a-z]+|[a-z]+|[0-9]+")
     word_list = re.findall(pattern, sentence.lower())
 
     counter = {}
