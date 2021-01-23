@@ -19,23 +19,13 @@ def BuildTree(records):
         raise ValueError('parent id should be lower than'
                          'record id except for root')
 
-    trees = [Node(record.record_id) for record in records]
+    tree = [Node(record.record_id) for record in records]
 
-    parent = {}
-    ordered_id = [i.record_id for i in records]
-    for i in range(len(ordered_id)):
-        for j in trees:
-            if i == j.node_id:
-                parent = j
-        for j in records:
-            if j.parent_id == i:
-                for k in trees:
-                    if k.node_id == 0:
-                        continue
-                    if j.record_id == k.node_id:
-                        child = k
-                        parent.children.append(child)
+    for record in records:
+        if record.record_id != 0:
+            tree[record.parent_id].children.append(tree[record.record_id])
+
     root = None
-    if len(trees) > 0:
-        root = trees[0]
+    if len(tree) > 0:
+        root = tree[0]
     return root
