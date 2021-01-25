@@ -15,17 +15,18 @@ def BuildTree(records):
 
     if not all(r.record_id == i for i, r in enumerate(records)):
         raise ValueError('Records should be continueous starting from 0')
-    if not all(r.parent_id == 0 or r.parent_id < r.record_id for r in records):
+    if not all(r.parent_id < r.record_id or r.parent_id == 0 for r in records):
         raise ValueError('parent id should be lower than'
                          'record id except for root')
 
     tree = [Node(record.record_id) for record in records]
 
-    for record in records:
-        if record.record_id != 0:
-            tree[record.parent_id].children.append(tree[record.record_id])
+    for record in records[1:]:
+        tree[record.parent_id].children.append(tree[record.record_id])
 
-    root = None
     if len(tree) > 0:
         root = tree[0]
+    else:
+        root = None
+
     return root
