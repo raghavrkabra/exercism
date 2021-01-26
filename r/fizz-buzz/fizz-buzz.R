@@ -10,9 +10,6 @@ fizz_buzz <- function(input) {
     else if (i %% 3 == 0) {
       series[i] <- 'Fizz';
     }
-    else {
-      series[i] <- toString(i);
-    }
   }
-  return(series);
+  return(as.character(series));
 }
