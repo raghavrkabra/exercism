@@ -3,17 +3,17 @@
 
 def score(word):
     """Calculate Scrabble score of given word."""
-    latter_values = {
-                     **dict.fromkeys((latter for latter in "AEIOULNRST"), 1),
-                     **dict.fromkeys((latter for latter in "DG"), 2),
-                     **dict.fromkeys((latter for latter in "BCMP"), 3),
-                     **dict.fromkeys((latter for latter in "FHVWY"), 4),
-                     **dict.fromkeys((latter for latter in "K"), 5),
-                     **dict.fromkeys((latter for latter in "JX"), 8),
-                     **dict.fromkeys((latter for latter in "QZ"), 10),
+    letter_values = {
+                     **dict.fromkeys((letter for letter in "AEIOULNRST"), 1),
+                     **dict.fromkeys((letter for letter in "DG"), 2),
+                     **dict.fromkeys((letter for letter in "BCMP"), 3),
+                     **dict.fromkeys((letter for letter in "FHVWY"), 4),
+                     **dict.fromkeys((letter for letter in "K"), 5),
+                     **dict.fromkeys((letter for letter in "JX"), 8),
+                     **dict.fromkeys((letter for letter in "QZ"), 10),
                     }
     score_ = 0
-    for latter in word.upper():
-        score_ += latter_values.get(latter)
+    for letter in word.upper():
+        score_ += letter_values.get(letter)
 
     return score_
