@@ -3,3 +3,4 @@ __pycache__
 _snaps
 .Rhistory
 .*.swp
+node_modules
